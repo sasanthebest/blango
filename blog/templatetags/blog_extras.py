@@ -35,13 +35,18 @@ def author_details(author, current_user):
 def row(extra_classes=""):
     return format_html('<div class="row {}">', extra_classes)
 
-
-
 @register.simple_tag
 def endrow():
   return format_html('</div>')
 
 
+@register.simple_tag
+def col(extra_classes=""):
+    return format_html('<div class="col {}">', extra_classes)
+
+@register.simple_tag
+def endcol():
+  return format_html('</div>')
 
 # @register.simple_tag(takes_context=True)
 # def author_details_tag(context):
