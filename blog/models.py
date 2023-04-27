@@ -12,6 +12,7 @@ class Tag(models.Model):
 
 
 class Comment(models.Model):
+    value = models.TextField(max_length=100, unique=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

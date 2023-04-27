@@ -11,6 +11,10 @@ from rest_framework.decorators import api_view
 from blog.models import Post
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
 from rest_framework.permissions import IsAdminUser
+from blog.api.serializers import PostSerializer, UserSerializer
+from django.contrib.auth import get_user_model
+
+User=get_user_model()
 
 class PostList(generics.ListCreateAPIView):
     permission_classes = [IsAdminUser]
@@ -21,3 +25,9 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    lookup_field = "email"
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
